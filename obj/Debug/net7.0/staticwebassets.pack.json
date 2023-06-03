@@ -1,0 +1,117 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\CandidatesProfile\\ab.PNG",
+      "PackagePath": "staticwebassets\\CandidatesProfile\\ab.PNG"
+    },
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\CandidatesProfile\\b+Trees.PNG",
+      "PackagePath": "staticwebassets\\CandidatesProfile\\b+Trees.PNG"
+    },
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\CandidatesProfile\\exam-pad.png",
+      "PackagePath": "staticwebassets\\CandidatesProfile\\exam-pad.png"
+    },
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\CandidatesProfile\\pad.PNG",
+      "PackagePath": "staticwebassets\\CandidatesProfile\\pad.PNG"
+    },
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\CandidatesProfile\\profile.jpg",
+      "PackagePath": "staticwebassets\\CandidatesProfile\\profile.jpg"
+    },
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\CandidatesProfile\\thank.png",
+      "PackagePath": "staticwebassets\\CandidatesProfile\\thank.png"
+    },
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\CandidatesResume\\AxeFinance Internship Progress Report.pdf",
+      "PackagePath": "staticwebassets\\CandidatesResume\\AxeFinance Internship Progress Report.pdf"
+    },
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\CandidatesResume\\CV-photo.pdf",
+      "PackagePath": "staticwebassets\\CandidatesResume\\CV-photo.pdf"
+    },
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\CandidatesResume\\CV.pdf",
+      "PackagePath": "staticwebassets\\CandidatesResume\\CV.pdf"
+    },
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\CandidatesResume\\Durgappa Hiremani MLC.pdf",
+      "PackagePath": "staticwebassets\\CandidatesResume\\Durgappa Hiremani MLC.pdf"
+    },
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\CandidatesResume\\Nptel_Programming_in_Java_2022_Jan_April.pdf",
+      "PackagePath": "staticwebassets\\CandidatesResume\\Nptel_Programming_in_Java_2022_Jan_April.pdf"
+    },
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\QuestionBulk\\valid.csv",
+      "PackagePath": "staticwebassets\\QuestionBulk\\valid.csv"
+    },
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\QuestionImages\\5a076338a42dca0011d31e82.f9475892556da48e7aeccea6.jpeg",
+      "PackagePath": "staticwebassets\\QuestionImages\\5a076338a42dca0011d31e82.f9475892556da48e7aeccea6.jpeg"
+    },
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\QuestionImages\\DatabaseDesign.drawio.png",
+      "PackagePath": "staticwebassets\\QuestionImages\\DatabaseDesign.drawio.png"
+    },
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\QuestionImages\\OutputEngine.drawio.png",
+      "PackagePath": "staticwebassets\\QuestionImages\\OutputEngine.drawio.png"
+    },
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\QuestionImages\\ab2.PNG",
+      "PackagePath": "staticwebassets\\QuestionImages\\ab2.PNG"
+    },
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\QuestionImages\\ab_tooltip.PNG",
+      "PackagePath": "staticwebassets\\QuestionImages\\ab_tooltip.PNG"
+    },
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\QuestionImages\\axe-finance.png",
+      "PackagePath": "staticwebassets\\QuestionImages\\axe-finance.png"
+    },
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\QuestionImages\\b+Trees.PNG",
+      "PackagePath": "staticwebassets\\QuestionImages\\b+Trees.PNG"
+    },
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\QuestionImages\\exam-pad.png",
+      "PackagePath": "staticwebassets\\QuestionImages\\exam-pad.png"
+    },
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\QuestionImages\\gif.gif",
+      "PackagePath": "staticwebassets\\QuestionImages\\gif.gif"
+    },
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\QuestionImages\\pad.PNG",
+      "PackagePath": "staticwebassets\\QuestionImages\\pad.PNG"
+    },
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\QuestionImages\\profile.jpg",
+      "PackagePath": "staticwebassets\\QuestionImages\\profile.jpg"
+    },
+    {
+      "Id": "E:\\backup23-11-22\\c drive\\axefinance\\ASP.NET WEB API Tutorials\\AxeAssessmentToolWebAPI\\AxeAssessmentToolWebAPI\\wwwroot\\QuestionImages\\terminated.png",
+      "PackagePath": "staticwebassets\\QuestionImages\\terminated.png"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.AxeAssessmentToolWebAPI.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.AxeAssessmentToolWebAPI.props",
+      "PackagePath": "build\\AxeAssessmentToolWebAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.AxeAssessmentToolWebAPI.props",
+      "PackagePath": "buildMultiTargeting\\AxeAssessmentToolWebAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.AxeAssessmentToolWebAPI.props",
+      "PackagePath": "buildTransitive\\AxeAssessmentToolWebAPI.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

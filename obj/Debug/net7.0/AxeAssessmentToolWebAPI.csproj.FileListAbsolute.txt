@@ -81,3 +81,7 @@ E:\backup23-11-22\c drive\axefinance\ASP.NET WEB API Tutorials\AxeAssessmentTool
 E:\backup23-11-22\c drive\axefinance\ASP.NET WEB API Tutorials\AxeAssessmentToolWebAPI\AxeAssessmentToolWebAPI\bin\Debug\net7.0\System.Net.Http.Formatting.dll
 E:\backup23-11-22\c drive\axefinance\ASP.NET WEB API Tutorials\AxeAssessmentToolWebAPI\AxeAssessmentToolWebAPI\bin\Debug\net7.0\Newtonsoft.Json.dll
 E:\backup23-11-22\c drive\axefinance\ASP.NET WEB API Tutorials\AxeAssessmentToolWebAPI\AxeAssessmentToolWebAPI\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
+E:\backup23-11-22\c drive\axefinance\ASP.NET WEB API Tutorials\AxeAssessmentToolWebAPI\AxeAssessmentToolWebAPI\bin\Debug\net7.0\AxeAssessmentToolWebAPI.staticwebassets.runtime.json
+E:\backup23-11-22\c drive\axefinance\ASP.NET WEB API Tutorials\AxeAssessmentToolWebAPI\AxeAssessmentToolWebAPI\bin\Debug\net7.0\CsvHelper.dll
+E:\backup23-11-22\c drive\axefinance\ASP.NET WEB API Tutorials\AxeAssessmentToolWebAPI\AxeAssessmentToolWebAPI\bin\Debug\net7.0\AutoMapper.dll
+E:\backup23-11-22\c drive\axefinance\ASP.NET WEB API Tutorials\AxeAssessmentToolWebAPI\AxeAssessmentToolWebAPI\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

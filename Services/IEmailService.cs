@@ -2,6 +2,6 @@
 {
     public interface IEmailService
     {
-        Task<string> SendTokenEmail(int usedId);
+        Task<string> SendTokenEmail(int usedId, string testName);
     }
 }

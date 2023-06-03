@@ -14,6 +14,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+// Add CORS
+
+builder.Services.AddCors(option =>
+{
+    option.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+});
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -43,13 +53,21 @@ builder.Services.AddSwaggerGen(options =>
 
 // To get data from the child tables
 builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
 // adding the dbContext 
 builder.Services.AddDbContext<DataContext>();
+
+// adding the dbContext2
+builder.Services.AddDbContext<DataContext2>();
+
 // injectig all the services
 builder.Services.AddScoped<IQuestionService, QuestionService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
+builder.Services.AddScoped<ISqlQuestionService, SqlQuestionService>();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 var app = builder.Build();
 
@@ -59,6 +77,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseCors();
 
 app.UseHttpsRedirection();
 

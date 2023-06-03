@@ -24,7 +24,5 @@ namespace AxeAssessmentToolWebAPI.Models
 
         [JsonIgnore]
         public Question? Question { get; set; }
-
-
     }
 }

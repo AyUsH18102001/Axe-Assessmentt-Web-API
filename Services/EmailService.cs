@@ -16,7 +16,7 @@ namespace AxeAssessmentToolWebAPI.Services
             this._configuration = configuration;
         }
 
-        public async Task<string> SendTokenEmail(int usedId)
+        public async Task<string> SendTokenEmail(int usedId,string testName)
         {
             // find the user
             User? user = await _dataContext.Users.FindAsync(usedId);
@@ -29,7 +29,7 @@ namespace AxeAssessmentToolWebAPI.Services
             content.AppendLine("Congratulations on shortlisting of your resume. It lloks like we have a candidate of utmost calliber <br>");
             content.AppendLine("We will be requesting you to take an assessment test on the AXE ASSESSMENT TOOL for us to see your logical and problem solving skills <br><br>");
 
-            string emailHTML = $"<html>" + $"<body> " + $"{content} <br> " + $"Please visit " + $"<a href=\"https://www.AxeAssessmentTool.com\">Axe Assessment Tool</a> and proceed with your test <br><br>" + $"Please use the code <b>{user.UserToken}</b>" + $"" +
+            string emailHTML = $"<html>" + $"<body> " + $"{content} <br> " + $"Please visit " + $"<a href=\"http://localhost:4200/tokenLogin\">Axe Assessment Tool</a> and proceed with your test <br><br>" + $"Please use the code <b>{user.UserToken}</b>" + $"" +
                 $"</body></html>";
             // send the email
             try
@@ -39,7 +39,7 @@ namespace AxeAssessmentToolWebAPI.Services
 
                 MailMessage message = new MailMessage();
                 message.From = new MailAddress(fromMail);
-                message.Subject = "AxeFinance Assessment Test Token";
+                message.Subject = $"Axe Finance Invite for Test | {testName} Test";
                 message.To.Add(new MailAddress(user.Email));
                 message.Body = emailHTML;
                 message.IsBodyHtml = true;
@@ -52,11 +52,11 @@ namespace AxeAssessmentToolWebAPI.Services
                 };
 
                 smtpClient.Send(message);
-                return "";
+                return "success";
             }
-            catch (Exception ex)
+            catch (Exception exp)
             {
-                return ex.Message;
+                return exp.Message;
             }
         }
     }

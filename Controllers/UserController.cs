@@ -1,5 +1,8 @@
-﻿using AxeAssessmentToolWebAPI.Models;
+﻿using AxeAssessmentToolWebAPI.FrontendModel;
+using AxeAssessmentToolWebAPI.Models;
+using AxeAssessmentToolWebAPI.Response_Models;
 using AxeAssessmentToolWebAPI.Services;
+using Azure;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -17,10 +20,16 @@ namespace AxeAssessmentToolWebAPI.Controllers
             this._service = service;
         }
 
-        [HttpGet]
-        public async Task<List<User>> GetAllUser()
+        [HttpGet("getUsers/{page}")]
+        public async Task<IQueryable<User>> GetAllUser(int page)
         {
-            return await _service.GetAllUser();
+            return await _service.GetAllUser(page);
+        }
+
+        [HttpGet("pageCount")]
+        public async Task<int> GetUserPageCount()
+        {
+            return await this._service.GetUserPageCount();
         }
 
         [HttpGet("{id}")]
@@ -29,54 +38,122 @@ namespace AxeAssessmentToolWebAPI.Controllers
             var result = await _service.GetUser(id);
             if (result == null)
             {
-                return NotFound("No such user found");
+                return NotFound("");
+                // Create the constants file
             }
             return Ok(result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> RegisterUser(User user)
+        public async Task<MessageAndCode> RegisterUser(User user)
         {
-            var result = await _service.RegisterUser(user);
-            if (!result)
-            {
-                return BadRequest("Error Ocurred in registering the user");
-            }
-            return Ok("New user has been registered");
+            MessageAndCode result = await _service.RegisterUser(user);
+            return result;
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> LoginUser(string email, string password)
+        public async Task<Token> LoginUser(Login creds)
         {
-            var result = await _service.LoginUser(email, password);
-            if (!string.IsNullOrEmpty(result))
+            Token result = await _service.LoginUser(creds);
+            if (result == null)
             {
-                return Ok(result);
+                return null;
             }
-            return NotFound("No such user have been registered");
+            return result;
         }
 
-        [HttpPost("loginToken")]
-        public async Task<IActionResult> LoginWithUserToken(string token)
+        [HttpPost("testSubmit")]
+        public async Task<MessageAndCode> UserSubmitTest(TestSubmit answers)
         {
-            string result = await _service.LoginWithUserToken(token);
+            var result = await _service.UserSubmitTest(answers);
+            MessageAndCode response = new MessageAndCode();
+            response.Message = result;
+            return response;
+        }
+
+        [HttpPost("questionAttempted")]
+        public async Task<MessageAndCode> UpdateQuestionAttempted(QuestionAttempted qa)
+        {
+            var result = await _service.UpdateQuestionAttempted(qa.userId,qa.questionId,qa.optionsIndex);
+            MessageAndCode response = new MessageAndCode();
+            response.Message = result;
+            return response;
+        }
+
+        /*[HttpPost("optionSelected")]
+        public async Task<MessageAndCode> UpdateOptionSelected(OptionSelected os)
+        {
+            var result = await _service.UpdateOptionSelected(os.questionId, os.optionsIndex);
+            MessageAndCode response = new MessageAndCode();
+            response.Message = result;
+            return response;
+        }*/
+
+        [HttpPost("loginToken")]
+        public async Task<Token> LoginWithUserToken(LoginToken userToken)
+        {
+            string result = await _service.LoginWithUserToken(userToken.Token);
+            Token token = new Token();
             if (!string.IsNullOrEmpty(result))
             {
-                return Ok(result);
+                token.token = result;
+                return token;
             }
-            return NotFound("No token found in database");
+            token.error = "Invalid Token";
+            return token;
         }
 
         [HttpPost("uploadResume")]
-        public async Task<IActionResult> UploadResume(int userId,IFormFile resume)
+        public async Task<MessageAndCode> UploadResume()
         {
+            var resume = Request.Form.Files[0];
+            MessageAndCode response = new MessageAndCode();
+
             //save file
-            string result = await _service.UploadResume(userId,resume);
+            string result = await _service.UploadResume(resume);
             if (!string.IsNullOrEmpty(result))
             {
-                return Ok("Resume Uploaded successfully");
+                response.Message = "Resume Uploaded successfully";
             }
-            return BadRequest("Error Ocurred in uploading Resume");
+            else
+            {
+                response.Message = "Error Ocurred in uploading Resume";
+            }
+            return response;
+        }
+
+        [HttpGet("userResume/{userId}")]
+        public async Task<MessageAndCode> GetUserResume(int userId)
+        {
+            MessageAndCode response = new MessageAndCode();
+            response.Message = await this._service.GetUserResume(userId);
+            return response;
+        }
+
+        [HttpPost("uploadProfile")]
+        public async Task<MessageAndCode> UploadUserProfile()
+        {
+            var image = Request.Form.Files[0];
+            MessageAndCode response = new MessageAndCode();
+            //save file
+            string result = await _service.UploadUserProfile(image);
+            if (!string.IsNullOrEmpty(result))
+            {
+                response.Message= "Profile Uploaded successfully";
+            }
+            else
+            {
+                response.Message = "Error Ocurred in uploading profle";
+            }
+            return response;
+        }
+
+        [HttpGet("userImage/{userId}")]
+        public async Task<MessageAndCode> GetUserProfileImage(int userId)
+        {
+            MessageAndCode response = new MessageAndCode();
+            response.Message =  await this._service.GetUserProfileImage(userId);
+            return response;
         }
 
         [HttpGet("userTest")]
@@ -90,10 +167,22 @@ namespace AxeAssessmentToolWebAPI.Controllers
             return NotFound("No user exists");
         }
 
-        [HttpGet("testData")]
-        public async Task<List<TestData>> GetTestData()
+        [HttpGet("testData/{userId}")]
+        public async Task<List<TestData>> GetTestData(int userId)
         {
-            return await _service.GetTestData();
+            return await _service.GetTestData(userId);
+        }
+
+        [HttpGet("getSqlTestData/{userId}")]
+        public async Task<IEnumerable<SQL_TestData>> SqlTestData(int userId)
+        {
+            return await _service.SqlTestData(userId);
+        }
+
+        [HttpGet("getTestRules/{userId}")]
+        public async Task<List<CandidateRules>> GetTestRules(int userId)
+        {
+            return await _service.GetTestRules(userId);
         }
 
         [HttpGet("userTerminated")]
@@ -118,7 +207,7 @@ namespace AxeAssessmentToolWebAPI.Controllers
             return Ok(result.ToString());
         }
 
-        [HttpPut("updateUserViolation")]
+        [HttpPut("updateUserViolation/{userId}")]
         public async Task<IActionResult> UpdateUserViolation(int userId)
         {
             bool result = await _service.UpdateUserViolation(userId);
@@ -129,27 +218,26 @@ namespace AxeAssessmentToolWebAPI.Controllers
             return BadRequest("Error Ocurred in updating user violation");
         }
 
-        [HttpGet("userId"),Authorize]
-        public async Task<string> GetUserId()
+
+        [HttpGet("userEmailAndId"),Authorize]
+        public async Task<UserData> GetUserEmailAndId()
         {
-            return await _service.GetUserId();
+            return await _service.GetUserEmailAndId();
         }
-        
-        [HttpGet("userEmail"),Authorize]
-        public async Task<string> GetUserEmail()
+
+        [HttpPost("runSql")]
+        public async Task<SQL_Response> RunSqlQuery(UserQuery query)
         {
-            return await _service.GetUserEmail();
+            return await _service.RunSqlQuery(query);
         }
 
         [HttpPost("forgotPassword")]
-        public async Task<IActionResult> ForgotPassword(string email, string newPassword)
+        public async Task<MessageAndCode> ForgotPassword(ForgotPassword userCreds)
         {
-            bool result = await _service.ForgotPassword(email, newPassword);
-            if (result)
-            {
-                return Ok("Password has been updated");
-            }
-            return BadRequest("Error Ocurred while updating the password");
+            string result = await _service.ForgotPassword(userCreds.Email, userCreds.Password);
+            MessageAndCode response = new MessageAndCode();
+            response.Message = result;
+            return response;
         }
 
         [HttpPost("updateScore")]
@@ -164,14 +252,70 @@ namespace AxeAssessmentToolWebAPI.Controllers
         }
 
         [HttpPut("updateEndTest")]
-        public async Task<IActionResult> UpdateEndTest(int userId)
+        public async Task<MessageAndCode> UpdateEndTest(UserData user)
         {
-            bool result = await _service.UpdateEndTest(userId);
+            bool result = await _service.UpdateEndTest(user.UserId);
+            MessageAndCode response = new MessageAndCode();
             if (result)
             {
-                return Ok("End Test has been updated");
+                response.Message = "success";
+                return response;
             }
-            return BadRequest("Error Ocurred while updating end test");
+            response.Message = "";
+            return response;
+        }
+
+        [HttpPut("updateSqlScore")]
+        public async Task<MessageAndCode> UpdateSqlScore(UserData user)
+        {
+            MessageAndCode response = new MessageAndCode();
+            var result = await _service.UpdateSqlScore(user.UserId);
+            if (result == null)
+            {
+                return response;
+            }
+            response.Message = result;
+            return response;
+        }
+
+        [HttpPost("submitSqlQuery")]
+        public async Task<MessageAndCode> SubmitQuery(List<SubmitSql> queries)
+        {
+            MessageAndCode response = new MessageAndCode();
+            var result = await _service.SubmitQuery(queries);
+            if (result == null)
+            {
+                return response;
+            }
+            response.Message = result;
+            return response;
+        }
+
+        [HttpGet("getTestName/{userId}")]
+        public async Task<MessageAndCode> UserTestName(int userId)
+        {
+            MessageAndCode response = new MessageAndCode();
+            string result = await _service.UserTestName(userId);
+            if (string.IsNullOrEmpty(result))
+            {
+                response.error = true;
+                return response;
+            }
+            response.Message = result;
+            return response;
+        }
+
+        [HttpGet("getTestQuestions/{userId}")]
+        public async Task<CandidateTest_QuestionsData> GetTestQuestions(int userId)
+        {
+            
+            return await _service.GetTestQuestions(userId);
+        }
+
+        [HttpGet("getTestInformation/{userId}")]
+        public async Task<TestInfo> GetTestInformation(int userId)
+        {
+            return await _service.GetTestInformation(userId);
         }
 
     }

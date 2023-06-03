@@ -4,6 +4,7 @@ using System.Net;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
 using AxeAssessmentToolWebAPI.Services;
+using AxeAssessmentToolWebAPI.Response_Models;
 
 namespace AxeAssessmentToolWebAPI.Controllers
 {
@@ -19,15 +20,20 @@ namespace AxeAssessmentToolWebAPI.Controllers
             this._service = service;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> SendEmail(int userId)
+        [HttpGet("{userId}/{testName}")]
+        public async Task<MessageAndCode> SendEmail(int userId, string testName)
         {
-            string result =  await _service.SendTokenEmail(userId);
-            if (string.IsNullOrEmpty(result))
+            MessageAndCode response = new MessageAndCode();
+            string result =  await _service.SendTokenEmail(userId,testName);
+            if (!string.IsNullOrEmpty(result))
             {
-                return Ok("Email has been send Successfully");
+                response.Message = "Email sent successfully";
             }
-            return BadRequest(result);
+            else
+            {
+                response.Message = result;
+            }
+            return response;
         }
     }
 }

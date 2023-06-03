@@ -16,6 +16,11 @@ namespace AxeAssessmentToolWebAPI.Models
 
         public int Attempted { get; set; }
 
+        public int TestPeriod { get; set; }
+        public int TotalQuestions { get; set; }
+
+        public int TestId { get; set; }
+
         [JsonIgnore]
         [ForeignKey(nameof(UserId))]
         public int UserId { get; set; }

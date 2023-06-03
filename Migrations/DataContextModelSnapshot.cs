@@ -55,68 +55,257 @@ namespace AxeAssessmentToolWebAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QuestionId"));
 
+                    b.Property<DateTime?>("D_Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("D_Id")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("I_Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("I_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IsSQL")
+                        .HasColumnType("int");
+
+                    b.Property<string>("QuestionContent")
+                        .IsRequired()
+                        .HasMaxLength(900)
+                        .HasColumnType("NVARCHAR");
+
+                    b.Property<string>("QuestionImage")
+                        .HasMaxLength(700)
+                        .HasColumnType("NVARCHAR");
+
+                    b.Property<int?>("QuestionTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TestTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("U_Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("U_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("short_name")
+                        .HasColumnType("int");
+
+                    b.HasKey("QuestionId");
+
+                    b.HasIndex("QuestionContent")
+                        .IsUnique();
+
+                    b.HasIndex("TestTypeId");
+
+                    b.HasIndex("short_name");
+
+                    b.ToTable("Questions");
+                });
+
+            modelBuilder.Entity("AxeAssessmentToolWebAPI.Models.QuestionType", b =>
+                {
+                    b.Property<int>("QuestionTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QuestionTypeId"));
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("short_name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("QuestionTypeId");
+
+                    b.HasIndex("short_name")
+                        .IsUnique();
+
+                    b.ToTable("QuestionType");
+                });
+
+            modelBuilder.Entity("AxeAssessmentToolWebAPI.Models.Rules", b =>
+                {
+                    b.Property<int>("RuleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RuleId"));
+
+                    b.Property<string>("Rule")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RuleDisplay")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("short_name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("RuleId");
+
+                    b.ToTable("Rules");
+                });
+
+            modelBuilder.Entity("AxeAssessmentToolWebAPI.Models.SQL_Answer", b =>
+                {
+                    b.Property<int>("AnswerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AnswerId"));
+
+                    b.Property<string>("Query")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AnswerId");
+
+                    b.HasIndex("QuestionId")
+                        .IsUnique();
+
+                    b.ToTable("SQL_Answer");
+                });
+
+            modelBuilder.Entity("AxeAssessmentToolWebAPI.Models.SQL_Question", b =>
+                {
+                    b.Property<int>("QuestionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QuestionId"));
+
                     b.Property<string>("QuestionContent")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("QuestionsType")
+                    b.Property<string>("QuestionTitle")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("QuestionId");
 
-                    b.ToTable("Questions");
+                    b.ToTable("SQL_Question");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            QuestionId = 3,
-                            QuestionContent = "Is HTML a Programming Language",
-                            QuestionsType = "True/False"
-                        },
-                        new
-                        {
-                            QuestionId = 4,
-                            QuestionContent = "What is T-SQL",
-                            QuestionsType = "MCQ"
-                        },
-                        new
-                        {
-                            QuestionId = 5,
-                            QuestionContent = "Select all the Logical Operators",
-                            QuestionsType = "Multiple Select"
-                        },
-                        new
-                        {
-                            QuestionId = 6,
-                            QuestionContent = "What is a sub query",
-                            QuestionsType = "MCQ"
-                        },
-                        new
-                        {
-                            QuestionId = 7,
-                            QuestionContent = "Select the correct query",
-                            QuestionsType = "MCQ"
-                        },
-                        new
-                        {
-                            QuestionId = 8,
-                            QuestionContent = "Which keyword is used for aliasing",
-                            QuestionsType = "MCQ"
-                        },
-                        new
-                        {
-                            QuestionId = 9,
-                            QuestionContent = "Can a Table have two Primary Keys",
-                            QuestionsType = "True/False"
-                        },
-                        new
-                        {
-                            QuestionId = 10,
-                            QuestionContent = "What is View",
-                            QuestionsType = "MCQ"
-                        });
+            modelBuilder.Entity("AxeAssessmentToolWebAPI.Models.Test", b =>
+                {
+                    b.Property<int>("TestId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TestId"));
+
+                    b.Property<DateTime?>("D_Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("D_Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MCQ_Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SQL_Count")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TestCreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TestCreator")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TestName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("U_Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("U_Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("TestId");
+
+                    b.ToTable("Test");
+                });
+
+            modelBuilder.Entity("AxeAssessmentToolWebAPI.Models.TestQuestions", b =>
+                {
+                    b.Property<int>("TestQuestionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TestQuestionId"));
+
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TestId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TestQuestionId");
+
+                    b.HasIndex("TestId");
+
+                    b.ToTable("TestQuestions");
+                });
+
+            modelBuilder.Entity("AxeAssessmentToolWebAPI.Models.TestRules", b =>
+                {
+                    b.Property<int>("TestRulesId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TestRulesId"));
+
+                    b.Property<int>("Rule")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TestId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TestRulesId");
+
+                    b.HasIndex("TestId");
+
+                    b.ToTable("TestRules");
+                });
+
+            modelBuilder.Entity("AxeAssessmentToolWebAPI.Models.TestType", b =>
+                {
+                    b.Property<int>("TestTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TestTypeId"));
+
+                    b.Property<string>("Test")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("short_name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("TestTypeId");
+
+                    b.ToTable("TestType");
                 });
 
             modelBuilder.Entity("AxeAssessmentToolWebAPI.Models.User", b =>
@@ -126,6 +315,11 @@ namespace AxeAssessmentToolWebAPI.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+
+                    b.Property<string>("College")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -143,7 +337,6 @@ namespace AxeAssessmentToolWebAPI.Migrations
                         .HasColumnType("varchar(60)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
@@ -154,8 +347,11 @@ namespace AxeAssessmentToolWebAPI.Migrations
                     b.Property<int>("SelectionStatus")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserProfileImage")
+                        .HasColumnType("nvarchar(700)");
+
                     b.Property<string>("UserResumeFileName")
-                        .HasColumnType("nvarchar(150)");
+                        .HasColumnType("nvarchar(650)");
 
                     b.Property<string>("UserToken")
                         .HasMaxLength(20)
@@ -189,6 +385,15 @@ namespace AxeAssessmentToolWebAPI.Migrations
                     b.Property<int>("Score")
                         .HasColumnType("int");
 
+                    b.Property<int>("TestId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TestPeriod")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalQuestions")
+                        .HasColumnType("int");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -198,6 +403,36 @@ namespace AxeAssessmentToolWebAPI.Migrations
                         .IsUnique();
 
                     b.ToTable("UserTests");
+                });
+
+            modelBuilder.Entity("AxeAssessmentToolWebAPI.Models.User_QuestionAttempted", b =>
+                {
+                    b.Property<int>("QuestionAttemptedId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QuestionAttemptedId"));
+
+                    b.Property<int?>("OptionIndex")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SqlQuery")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("SqlResult")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("QuestionAttemptedId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("User_QuestionAttempted");
                 });
 
             modelBuilder.Entity("AxeAssessmentToolWebAPI.Models.Option", b =>
@@ -211,6 +446,54 @@ namespace AxeAssessmentToolWebAPI.Migrations
                     b.Navigation("Question");
                 });
 
+            modelBuilder.Entity("AxeAssessmentToolWebAPI.Models.Question", b =>
+                {
+                    b.HasOne("AxeAssessmentToolWebAPI.Models.TestType", "TestType")
+                        .WithMany("Questions")
+                        .HasForeignKey("TestTypeId");
+
+                    b.HasOne("AxeAssessmentToolWebAPI.Models.QuestionType", "QuestionType")
+                        .WithMany("Question")
+                        .HasForeignKey("short_name");
+
+                    b.Navigation("QuestionType");
+
+                    b.Navigation("TestType");
+                });
+
+            modelBuilder.Entity("AxeAssessmentToolWebAPI.Models.SQL_Answer", b =>
+                {
+                    b.HasOne("AxeAssessmentToolWebAPI.Models.SQL_Question", "SQL_Question")
+                        .WithOne("SQL_Answer")
+                        .HasForeignKey("AxeAssessmentToolWebAPI.Models.SQL_Answer", "QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SQL_Question");
+                });
+
+            modelBuilder.Entity("AxeAssessmentToolWebAPI.Models.TestQuestions", b =>
+                {
+                    b.HasOne("AxeAssessmentToolWebAPI.Models.Test", "Test")
+                        .WithMany("TestQuestions")
+                        .HasForeignKey("TestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Test");
+                });
+
+            modelBuilder.Entity("AxeAssessmentToolWebAPI.Models.TestRules", b =>
+                {
+                    b.HasOne("AxeAssessmentToolWebAPI.Models.Test", "Test")
+                        .WithMany("TestRules")
+                        .HasForeignKey("TestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Test");
+                });
+
             modelBuilder.Entity("AxeAssessmentToolWebAPI.Models.UserTest", b =>
                 {
                     b.HasOne("AxeAssessmentToolWebAPI.Models.User", "User")
@@ -222,13 +505,49 @@ namespace AxeAssessmentToolWebAPI.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("AxeAssessmentToolWebAPI.Models.User_QuestionAttempted", b =>
+                {
+                    b.HasOne("AxeAssessmentToolWebAPI.Models.User", "User")
+                        .WithMany("QuestionAttempted")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("AxeAssessmentToolWebAPI.Models.Question", b =>
                 {
                     b.Navigation("Options");
                 });
 
+            modelBuilder.Entity("AxeAssessmentToolWebAPI.Models.QuestionType", b =>
+                {
+                    b.Navigation("Question");
+                });
+
+            modelBuilder.Entity("AxeAssessmentToolWebAPI.Models.SQL_Question", b =>
+                {
+                    b.Navigation("SQL_Answer")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AxeAssessmentToolWebAPI.Models.Test", b =>
+                {
+                    b.Navigation("TestQuestions");
+
+                    b.Navigation("TestRules");
+                });
+
+            modelBuilder.Entity("AxeAssessmentToolWebAPI.Models.TestType", b =>
+                {
+                    b.Navigation("Questions");
+                });
+
             modelBuilder.Entity("AxeAssessmentToolWebAPI.Models.User", b =>
                 {
+                    b.Navigation("QuestionAttempted");
+
                     b.Navigation("UserTest")
                         .IsRequired();
                 });

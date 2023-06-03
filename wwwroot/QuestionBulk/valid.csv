@@ -1,0 +1,9 @@
+Content,TestTypeId,QuestionTypeId,Option-1,Option-2,Option-3,Option-4
+Select nice the Angular Lifecycle events,angular,ms,ngInitState,ngAfterViewInit-5,ngDispose,ngOnInit-5
+Which of the following is a file organization method,sql-mcq,ms,Hashed,Spanned-3,Unspanned-3,Indexed Sequential-4
+Why  we use JOIN clause in queries,sql-mcq,mcq,To reduce query execution time,To get data from multiple tables-10,Used to concat two columns,To join nested queries
+What are ACID properties in Transactions,sql-mcq,ms,Atomicity,Completeness,Durability,Isolation
+What are properties of B Trees,sql-mcq,ms,It’s a Balanced Tree-3,Its used for primary indexing,B Trees are based on order-3,They are used for multilevel indexing-4
+What is the concept of RAID,sql-mcq,mcq,Recurssively Arranged Independent Disks-10,Redundant Arrays of Independent Disks,Restoring Array Inexpensive Disks,Recycled Array Integral Disks
+What is the purpose of RAID,sql-mcq,ms,Reliability of data-5,Performance-5,Data Mirroring,Data Compression
+What are types of Schedule in Transaction,sql-mcq,ms,Serial-5,Circular,Parallel-5,Recurssive
